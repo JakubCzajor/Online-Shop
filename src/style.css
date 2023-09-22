@@ -6,6 +6,34 @@ body {
     margin: 0;
 }
 
-.items--container {
+.loading--spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
 
+.items--container {
+    margin-top: 50px;
+}
+
+.items--container > div.row {
+    row-gap: 25px;
+}
+
+.card--container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.card--image {
+    padding: 30px 30px 10px 30px;
+    max-width: 300px;
+    max-height: 300px;
+    object-fit: contain;
+}
+
+.card--body {
+    width: 100%;
 }
