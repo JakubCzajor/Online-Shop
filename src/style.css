@@ -43,6 +43,11 @@ body {
     display: flex;
     align-items: center;
     padding: 15px;
+    transition: box-shadow 0.2s;
+}
+
+.card--container:hover {
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
 }
 
 .card--favourite-icon {
@@ -53,7 +58,7 @@ body {
 }
 
 .card--favourite-icon:hover {
-    opacity: 0.9;
+    opacity: 0.85;
 }
 
 .card--image {
@@ -74,6 +79,18 @@ body {
     font-weight: bold;
 }
 
+.card--rating {
+    display: flex;
+    align-items: end;
+}
+
+.card--rating-count {
+    font-size: 13px;
+    display: flex;
+    align-items: end;
+    margin-left: 3px;
+}
+
 .card--price {
-    font-size: 20px;
+    font-size: 22px;
 }

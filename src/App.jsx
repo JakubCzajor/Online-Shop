@@ -25,6 +25,15 @@ export default function App() {
             .then(setLoading(false))
     }, [])
 
+    useEffect(() => {
+        const newArray = []
+        for(let i = 0; i < allItems.length; i++) {
+            const item = allItems[i]
+            item.isFavourite && newArray.push(item.id)  
+        }
+        setFavourite(newArray)
+    }, [allItems])
+
     function toggleFavourite(id) {
         setAllItems(oldItems => oldItems.map(obj => {
             return obj.id === id ?
@@ -39,8 +48,8 @@ export default function App() {
             <Item
                 title={item.title}
                 price={item.price}
-               category={item.category}
-                description={item.description}
+                category={item.category}
+                rating={item.rating}
                 image={item.image}
                 isFavourite={item.isFavourite}
                 toggleFavourite={() => toggleFavourite(item.id)}
@@ -50,7 +59,7 @@ export default function App() {
 
   return (
     <>
-      <MyNavbar />
+      <MyNavbar favourite={favourite} />
       <Main itemElements={itemElements} loading={loading} />
     </>
   )
