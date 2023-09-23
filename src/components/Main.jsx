@@ -8,7 +8,7 @@ export default function Main(props) {
         <main>
             <Container className='items--container'>
                 <Row>
-                    {props.loading && <Spinner className='loading--spinner' animation="border" variant="primary" />}
+                    {props.loading && <Spinner className='loading--spinner' animation='border' variant='primary' />}
                     {props.itemElements}
                 </Row>
             </Container>

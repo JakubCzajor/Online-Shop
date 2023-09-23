@@ -6,6 +6,23 @@ body {
     margin: 0;
 }
 
+.nav--link {
+    position: relative;
+}
+
+.nav--link-number {
+    position: absolute;
+    top: 2px;
+    right: 16px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2px;
+}
+
 .loading--spinner {
     position: absolute;
     top: 50%;
@@ -13,7 +30,7 @@ body {
 }
 
 .items--container {
-    margin-top: 50px;
+    margin-top: 150px;
 }
 
 .items--container > div.row {
@@ -21,14 +38,26 @@ body {
 }
 
 .card--container {
+    position: relative;
     height: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 50px;
+    padding: 15px;
+}
+
+.card--favourite-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.card--favourite-icon:hover {
+    opacity: 0.9;
 }
 
 .card--image {
-    padding: 30px 30px 10px 30px;
+    padding: 15px 15px 10px 15px;
     max-width: 300px;
     max-height: 300px;
     object-fit: contain;
@@ -36,4 +65,15 @@ body {
 
 .card--body {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.card--title {
+    font-weight: bold;
+}
+
+.card--price {
+    font-size: 20px;
 }
