@@ -5,15 +5,17 @@ import MyNavbar from './components/MyNavbar'
 import Main from './components/Main'
 import Item from './components/Item'
 import Col from 'react-bootstrap/Col';
+import { Button } from 'react-bootstrap'
 
 export default function App() {
 
     const [loading, setLoading] = useState(true)
     const [allItems, setAllItems] = useState([])
     const [favourite, setFavourite] = useState([])
+    const [sort, setSort] = useState("featured")
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products?limit=15')
+        fetch('https://fakestoreapi.com/products?limit=20')
             .then(res => res.json())
             .then(data => {
                 const productsWithFavourite = data.map(product => ({
@@ -41,7 +43,27 @@ export default function App() {
             obj
         }))
     }
-        
+    
+    useEffect(() => {
+        const newArray = [].concat(allItems)
+        .sort((a, b) => {
+            return sort === "featured" ?
+                a.id - b.id :
+            sort === "price-asc" ?
+                a.price - b.price :
+            sort === "price-desc" ?
+                b.price - a.price :
+            sort === "rating" ?
+                b.rating.rate - a.rating.rate :
+            console.log()
+            
+        })
+        setAllItems(newArray)
+    }, [sort])
+
+    function sortItems(event) {
+        setSort(event.target.value)
+    }
 
     const itemElements = allItems.map(item => (
         <Col xs={12} sm={6} md={4} key={item.id}>
@@ -60,7 +82,7 @@ export default function App() {
   return (
     <>
       <MyNavbar favourite={favourite} />
-      <Main itemElements={itemElements} loading={loading} />
+      <Main itemElements={itemElements} loading={loading} sort={sort} sortItems={sortItems} />
     </>
   )
 }

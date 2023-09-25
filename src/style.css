@@ -23,17 +23,23 @@ body {
     padding-bottom: 2px;
 }
 
-.loading--spinner {
+.loading-spinner {
     position: absolute;
     top: 50%;
     left: 50%;
 }
 
-.items--container {
+.main--options-container {
     margin-top: 150px;
+    margin-bottom: 30px;
+
 }
 
-.items--container > div.row {
+.main--form-select {
+    width: 170px;
+}
+
+.main--items-container > div.row {
     row-gap: 25px;
 }
 
