@@ -29,12 +29,21 @@ body {
     left: 50%;
 }
 
-.main--options-container {
+.main {
     margin-top: 150px;
+    display: flex;
+}
+
+.main--sidebar {
+    max-width: 250px;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.main--options-container {
     margin-bottom: 30px;
     display: flex;
     gap: 20px;
-
 }
 
 .main--select-sort {
