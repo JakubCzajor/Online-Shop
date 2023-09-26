@@ -32,15 +32,28 @@ body {
 .main--options-container {
     margin-top: 150px;
     margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
 
 }
 
-.main--form-select {
+.main--select-sort {
     width: 170px;
+}
+
+.main--select-items {
+    width: 80px;
+}
+
+.main--items-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .main--items-container > div.row {
     row-gap: 25px;
+    margin-bottom: 30px;
 }
 
 .card--container {

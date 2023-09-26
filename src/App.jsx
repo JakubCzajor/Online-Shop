@@ -5,35 +5,56 @@ import MyNavbar from './components/MyNavbar'
 import Main from './components/Main'
 import Item from './components/Item'
 import Col from 'react-bootstrap/Col';
-import { Button } from 'react-bootstrap'
 
 export default function App() {
 
     const [loading, setLoading] = useState(true)
     const [allItems, setAllItems] = useState([])
+    const [currentItems, setCurrentItems] = useState([]);
+    const [pageCount, setPageCount] = useState(0);
+    const [itemOffset, setItemOffset] = useState(0);
+    const [itemsPerPage, setItemsPerPage] = useState(6);
     const [favourite, setFavourite] = useState([])
     const [sort, setSort] = useState("featured")
 
+    // API call
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products?limit=20')
+        fetch('https://fakestoreapi.com/products')
             .then(res => res.json())
             .then(data => {
-                const productsWithFavourite = data.map(product => ({
+                const updatedProducts = data.map(product => ({
                     ...product,
                     isFavourite: false,
                   }));
-                setAllItems(productsWithFavourite)
+                setAllItems(updatedProducts)
             })
             .then(setLoading(false))
     }, [])
 
+    // Pagination
     useEffect(() => {
-        const newArray = []
+        const endOffset = itemOffset + itemsPerPage;
+        setCurrentItems(allItems.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(allItems.length / itemsPerPage));
+    }, [itemOffset, itemsPerPage, allItems]);
+
+    function pageClick(event) {
+        const newOffset = event.selected * itemsPerPage % allItems.length;
+        setItemOffset(newOffset);
+    }
+    
+    function changeItemsPerPage(event) {
+        setItemsPerPage(event.target.value)
+    }
+    
+    // Favourite
+    useEffect(() => {
+        const favouriteArray = []
         for(let i = 0; i < allItems.length; i++) {
             const item = allItems[i]
-            item.isFavourite && newArray.push(item.id)  
+            item.isFavourite && favouriteArray.push(item.id)  
         }
-        setFavourite(newArray)
+        setFavourite(favouriteArray)
     }, [allItems])
 
     function toggleFavourite(id) {
@@ -44,28 +65,32 @@ export default function App() {
         }))
     }
     
+    // Sorting
     useEffect(() => {
-        const newArray = [].concat(allItems)
+        const sortedArray = [].concat(allItems)
         .sort((a, b) => {
-            return sort === "featured" ?
-                a.id - b.id :
-            sort === "price-asc" ?
-                a.price - b.price :
-            sort === "price-desc" ?
-                b.price - a.price :
-            sort === "rating" ?
-                b.rating.rate - a.rating.rate :
-            console.log()
-            
+            switch(sort) {
+                case 'featured':
+                    return a.id - b.id
+                case 'price-asc':
+                    return a.price - b.price
+                case 'price-desc':
+                    return b.price - a.price
+                case 'rating':
+                    return b.rating.rate - a.rating.rate
+                default:
+                    console.log()
+            }
         })
-        setAllItems(newArray)
+        setAllItems(sortedArray)
     }, [sort])
 
     function sortItems(event) {
         setSort(event.target.value)
     }
 
-    const itemElements = allItems.map(item => (
+    // Mapping
+    const itemElements = currentItems.map(item => (
         <Col xs={12} sm={6} md={4} key={item.id}>
             <Item
                 title={item.title}
@@ -81,8 +106,18 @@ export default function App() {
 
   return (
     <>
-      <MyNavbar favourite={favourite} />
-      <Main itemElements={itemElements} loading={loading} sort={sort} sortItems={sortItems} />
+        <MyNavbar favourite={favourite} />
+        <Main
+            itemElements={itemElements}
+            pageClick={pageClick}
+            pageCount={pageCount}
+            itemsPerPage={itemsPerPage}
+            changeItemsPerPage={changeItemsPerPage}
+            loading={loading}
+            sort={sort}
+            sortItems={sortItems}
+
+        />
     </>
   )
 }
