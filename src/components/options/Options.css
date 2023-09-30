@@ -1,0 +1,13 @@
+.options-container {
+    margin-bottom: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.select-sort {
+    width: 170px;
+}
+
+.select-products-per-page {
+    width: 80px;
+}
