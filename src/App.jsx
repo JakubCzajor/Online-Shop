@@ -8,6 +8,7 @@ export default function App() {
 
     const [allProducts, setAllProducts] = useState([])
     const [sort, setSort] = useState([])
+    const [cart, setCart] = useState([])
 
     // API
     useEffect(() => {
@@ -40,12 +41,17 @@ export default function App() {
         setSort(event.target.value)
     }
 
+    const addToCart = (id) => {
+        setCart(prevCart => [...prevCart, id])
+    }
+
   return (
     <>
-        <Header />
+        <Header cart={cart} />
         <Main
             allProducts={allProducts}
             sortProducts={sortProducts}
+            addToCart={addToCart}
         />
     </>
   )

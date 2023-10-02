@@ -32,7 +32,7 @@ export default function Content(props) {
 
     const productElements = currentProducts.map(product => (
         <Col xs={12} sm={6} md={4} key={product.id}>
-            <Product {...product} />
+            <Product {...product} addToCart={props.addToCart} />
         </Col>
     ))
 

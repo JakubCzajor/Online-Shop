@@ -6,13 +6,13 @@ export default function Options(props) {
 
     return (
         <Container className='options-container'>
-            <Form.Select value={props.sort} onChange={props.sortProducts} className='select-sort'>
+            <Form.Select value={props.sort} onChange={props.sortProducts} className='select-sort shadow-sm'>
                 <option value='featured'>Featured</option>
                 <option value='price-asc'>Price ascending</option>
                 <option value='price-desc'>Price descending</option>
                 <option value='rating'>Highest Rating</option>
             </Form.Select>
-            <Form.Select value={props.productsPerPage} onChange={props.changeProductsPerPage} className='select-products-per-page'>
+            <Form.Select value={props.productsPerPage} onChange={props.changeProductsPerPage} className='select-products-per-page shadow-sm'>
                 <option value={6}>6</option>
                 <option value={9}>9</option>
                 <option value={12}>12</option>

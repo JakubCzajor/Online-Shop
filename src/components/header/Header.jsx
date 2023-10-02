@@ -11,7 +11,9 @@ export default function Header(props) {
             <Container>
                 <Navbar.Brand href='#' className='fs-2'>ONLINE SHOP</Navbar.Brand>
                 <Nav className='ms-auto'>
-                    <Nav.Link href='#cart' className='navigation-link'><Cart size={30} /></Nav.Link>
+                    <Nav.Link href='#cart' className='navigation-link'><Cart size={30} />
+                        {props.cart.length > 0 && <p className='nav-link-number bg-warning text-secondary'>{props.cart.length}</p>}
+                    </Nav.Link>
                 </Nav>
             </Container>
         </Navbar>

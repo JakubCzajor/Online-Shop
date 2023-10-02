@@ -2,10 +2,10 @@
     position: relative;
 }
 
-/* .nav-link-number {
+.nav-link-number {
     position: absolute;
     top: 2px;
-    right: 16px;
+    right: 5px;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -13,4 +13,4 @@
     justify-content: center;
     align-items: center;
     padding-bottom: 2px;
-} */
+}
