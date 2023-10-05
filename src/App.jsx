@@ -14,7 +14,13 @@ export default function App() {
     useEffect(() => {
         fetch('https://fakestoreapi.com/products')
         .then((res) => res.json())
-        .then(data => setAllProducts(data))
+        .then(data => {
+            const updatedProducts = data.map(product => ({
+                    ...product,
+                    count: 0,
+                }));
+                setAllProducts(updatedProducts)
+            })
     }, [])
            
     // Sorting
@@ -41,8 +47,18 @@ export default function App() {
         setSort(event.target.value)
     }
 
-    const addToCart = (id) => {
-        setCart(prevCart => [...prevCart, id])
+    const addToCart = (el) => {
+        const cartCopy = cart.slice();
+        const index = cartCopy.findIndex((product) => el.id === product.id);
+
+        if (index === -1) {
+            cartCopy.push({ ...el, count: 1 });
+        } else {
+            const pr = cartCopy[index];
+            cartCopy[index] = { ...pr, count: pr.count + 1 };
+        }
+
+        setCart(cartCopy);
     }
 
   return (

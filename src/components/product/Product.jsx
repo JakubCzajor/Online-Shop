@@ -20,7 +20,7 @@ export default function Product(props) {
                     <Card.Text className='product-rating-count text-secondary'> ({props.rating.count})</Card.Text>
                 </div>
                 <Card.Text className='product-price'>${props.price}</Card.Text>
-                <Button className='product-button' variant='primary' onClick={() => props.addToCart(props.id)}>Add to cart</Button>
+                <Button className='product-button' variant='primary' onClick={() => props.addToCart(props)}>Add to cart</Button>
             </Card.Body>
         </Card>
     )
