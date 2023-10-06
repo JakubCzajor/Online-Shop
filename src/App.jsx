@@ -49,15 +49,15 @@ export default function App() {
 
     // Cart
     const addToCart = (el) => {
-        const cartCopy = cart.slice();
-        const index = cartCopy.findIndex((product) => el.id === product.id);
+        const cartCopy = cart.slice()
+        const index = cartCopy.findIndex((product) => el.id === product.id)
         if (index === -1) {
-            cartCopy.push({ ...el, count: 1 });
+            cartCopy.push({ ...el, count: 1 })
         } else {
-            const pr = cartCopy[index];
-            cartCopy[index] = { ...pr, count: pr.count + 1 };
+            const pr = cartCopy[index]
+            cartCopy[index] = { ...pr, count: pr.count + 1 }
         }
-        setCart(cartCopy);
+        setCart(cartCopy)
     }
 
     const removeFromCart = (el) => {
@@ -65,13 +65,20 @@ export default function App() {
         setCart(cartCopy)
     }
 
-    
+    const decreaseCount = (el) => {
+        const cartCopy = cart.slice()
+        const index = cart.findIndex((product) => el.id === product.id)
+        const previous = cartCopy[index]
+        cartCopy[index] = {...previous, count: previous.count && previous.count - 1}
+        setCart(cartCopy)
+    }
 
   return (
     <>
         <Header
             cart={cart}
             removeFromCart={removeFromCart}
+            decreaseCount={decreaseCount}
         />
         <Main
             allProducts={allProducts}

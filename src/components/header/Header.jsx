@@ -15,7 +15,12 @@ export default function Header(props) {
     const handleClose = () => setShow(false)
 
     const cartElements = props.cart.map(product => (
-        <CartProduct key={product.id} {...product} removeFromCart={props.removeFromCart} />
+        <CartProduct
+            key={product.id}
+            {...product}
+            removeFromCart={props.removeFromCart}
+            decreaseCount={props.decreaseCount}
+        />
     ))
 
     return (
