@@ -23,7 +23,7 @@ export default function App() {
             })
     }, [])
            
-    // Sorting
+    // Sort
     useEffect(() => {
         const sortedArray = [].concat(allProducts)
         .sort((a, b) => {
@@ -47,23 +47,32 @@ export default function App() {
         setSort(event.target.value)
     }
 
+    // Cart
     const addToCart = (el) => {
         const cartCopy = cart.slice();
         const index = cartCopy.findIndex((product) => el.id === product.id);
-
         if (index === -1) {
             cartCopy.push({ ...el, count: 1 });
         } else {
             const pr = cartCopy[index];
             cartCopy[index] = { ...pr, count: pr.count + 1 };
         }
-
         setCart(cartCopy);
     }
 
+    const removeFromCart = (el) => {
+        const cartCopy = cart.filter((product) => el.id !== product.id)
+        setCart(cartCopy)
+    }
+
+    
+
   return (
     <>
-        <Header cart={cart} />
+        <Header
+            cart={cart}
+            removeFromCart={removeFromCart}
+        />
         <Main
             allProducts={allProducts}
             sortProducts={sortProducts}

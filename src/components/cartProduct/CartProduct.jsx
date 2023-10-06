@@ -9,6 +9,7 @@ export default function CartProduct(props) {
             <Button>-</Button>
             <span className='mx-2'>{props.count}</span>
             <Button>+</Button>
+            <Button variant='danger' onClick={() => props.removeFromCart(props)}>Remove</Button>
         </>
     )
 }
