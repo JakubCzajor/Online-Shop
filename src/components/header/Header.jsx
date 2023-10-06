@@ -9,10 +9,7 @@ import './Header.css';
 export default function Header(props) {
 
     const [show, setShow] = useState(false)
-    let sumAmount = 0
-    props.cart.forEach(product => {
-        sumAmount += product.count
-    })
+    let cartLength = props.cart.reduce((total, product) => total + product.count, 0)
 
     const handleShow = () => setShow(true)
     const handleClose = () => setShow(false)
@@ -27,7 +24,7 @@ export default function Header(props) {
                 <Navbar.Brand href='#' className='fs-2'><span className='fw-bold text-underline'>ONLINE</span> SHOP</Navbar.Brand>
                 <Nav className='ms-auto'>
                     <Nav.Link href='#' onClick={handleShow} className='navigation-link'><Cart size={30} />
-                        {sumAmount > 0 && <p className='nav-link-number bg-warning text-secondary'>{sumAmount}</p>}
+                        {cartLength > 0 && <p className='nav-link-number bg-warning text-secondary'>{cartLength}</p>}
                     </Nav.Link>
                 </Nav>
             </Container>
