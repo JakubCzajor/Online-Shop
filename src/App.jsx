@@ -65,11 +65,11 @@ export default function App() {
         setCart(cartCopy)
     }
 
-    const decreaseCount = (el) => {
+    const changeCount = (el, char) => {
         const cartCopy = cart.slice()
         const index = cart.findIndex((product) => el.id === product.id)
         const previous = cartCopy[index]
-        cartCopy[index] = {...previous, count: previous.count && previous.count - 1}
+        cartCopy[index] = {...previous, count: char === '-' ? previous.count > 1 ? previous.count - 1 : 1 : previous.count + 1}
         setCart(cartCopy)
     }
 
@@ -78,7 +78,7 @@ export default function App() {
         <Header
             cart={cart}
             removeFromCart={removeFromCart}
-            decreaseCount={decreaseCount}
+            changeCount={changeCount}
         />
         <Main
             allProducts={allProducts}

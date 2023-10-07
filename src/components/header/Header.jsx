@@ -19,7 +19,7 @@ export default function Header(props) {
             key={product.id}
             {...product}
             removeFromCart={props.removeFromCart}
-            decreaseCount={props.decreaseCount}
+            changeCount={props.changeCount}
         />
     ))
 
