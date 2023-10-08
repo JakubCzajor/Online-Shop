@@ -10,7 +10,7 @@ import './Header.css';
 export default function Header(props) {
 
     const [show, setShow] = useState(false)
-    let cartLength = props.cart.reduce((total, product) => total + product.count, 0)
+    const cartLength = props.cart.reduce((total, product) => total + product.count, 0)
 
     const handleShow = () => setShow(true)
     const handleClose = () => setShow(false)
@@ -36,7 +36,7 @@ export default function Header(props) {
             </Container>
             <CartOffcanvas
                 show={show}
-                cartLength={cartLength}
+                cart={props.cart}
                 handleClose={handleClose}
                 cartElements={cartElements}
             />

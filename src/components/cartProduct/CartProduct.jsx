@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import { Trash3 } from 'react-bootstrap-icons';
 import './CartProduct.css';
-import Container from 'react-bootstrap/Container';
 
 export default function CartProduct(props) {
 
