@@ -5,7 +5,7 @@ import './CartOffcanvas.css';
 export default function CartOffcanvas(props) {
 
     return (
-        <Offcanvas show={props.show} onHide={props.handleClose} placement='end'>
+        <Offcanvas show={props.show} onHide={props.handleClose} placement='end' className='p-2'>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title className='offcanvas-title'><Cart size={22} className='me-2 mt-1' />Cart</Offcanvas.Title>
             </Offcanvas.Header>

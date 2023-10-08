@@ -1,15 +1,20 @@
 import Button from 'react-bootstrap/Button';
+import { Trash3 } from 'react-bootstrap-icons';
 import './CartProduct.css';
+import Container from 'react-bootstrap/Container';
 
 export default function CartProduct(props) {
 
     return (
-        <>
-            <h5>{props.title}</h5>
-            <Button onClick={() => props.changeProductCount(props, '-')}>-</Button>
-            <span className='mx-2'>{props.count}</span>
-            <Button onClick={() => props.changeProductCount(props, '+')}>+</Button>
-            <Button variant='danger' onClick={() => props.removeFromCart(props)}>Remove</Button>
-        </>
+        <Container className='cart-container border rounded p-3 mb-3'>
+            <img src={props.image} className='cart-image' />
+            <Container className='cart-body'>
+                <h5 className='cart-title'>{props.title}</h5>
+                <Button variant='secondary' size="sm" onClick={() => props.changeProductCount(props, '-')}>-</Button>            
+                <span className='mx-2'>{props.count}</span>
+                <Button variant='secondary' size="sm" className='me-4' onClick={() => props.changeProductCount(props, '+')}>+</Button>
+                <Trash3 size={22} className='trash-icon text-danger' role='button' onClick={() => props.removeFromCart(props)} />
+            </Container>
+        </Container>
     )
 }
